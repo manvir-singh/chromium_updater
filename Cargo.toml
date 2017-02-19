@@ -1,0 +1,9 @@
+[package]
+name = "chromium_updater"
+version = "0.1.0"
+authors = ["Manvir"]
+
+[dependencies]
+libc = "0.2.20"
+hyper = "0.10.4"
+hyper-native-tls = "0.2.2"
