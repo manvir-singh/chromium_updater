@@ -98,14 +98,14 @@ fn update(out_path: &str, remote: &str) {
 fn main() {
 	const LAST_CHANGE_URL: &str = "https://www.googleapis.com/download/storage/v1/b/chromium-browser-snapshots/o/Win_x64%2FLAST_CHANGE?alt=media";
 	const OUT_PATH: &str = "mini_installer.exe";
-	const CHROME_EXE: &str = "C:\\Users\\Manvir\\AppData\\Local\\Chromium\\Application\\chrome.exe";
+	let chrome_exe = env!("LOCALAPPDATA").to_string() + "\\Chromium\\Application\\chrome.exe";
 
 	let remote_thread = thread::spawn(move|| {
 		get_remote_version(LAST_CHANGE_URL)
 	});
 
 	let local_thread = thread::spawn(move|| {
-		get_local_version(CHROME_EXE)
+		get_local_version(&chrome_exe)
 	});
 
 	let remote = remote_thread.join().unwrap();
